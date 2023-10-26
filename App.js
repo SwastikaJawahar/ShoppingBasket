@@ -15,8 +15,28 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const ListItemStack = createNativeStackNavigator();
+const DetailListStack = createNativeStackNavigator();
 
+const ListItemStackScreen = ({navigation}) => (
+  <ListItemScreen.Navigator>
+    <ListItemStack.Screen
+      options={{title: 'Shopping Kart List'}}
+      name="ListItem"
+      component={ListItemScreen}
+    />
+  </ListItemScreen.Navigator>
+);
+
+const DetailListStackScreen = ({navigation}) => (
+  <DetailListStack.Navigator>
+    <DetailListStack.Screen
+      options={{title: 'Shopping Kart List'}}
+      name="DetailDesc"
+      component={DetailListItemScreen}
+    />
+  </DetailListStack.Navigator>
+);
 function MyTabs() {
   return (
     <Tab.Navigator>
@@ -32,8 +52,9 @@ function App(navigation) {
   return (
     <NavigationContainer style={style.container}>
       <Drawer.Navigator>
-        <Drawer.Screen name="LoginPage" component={LoginPage} />
+        <Drawer.Screen name="WelcomePage" component={WelcomeScreen} />
         <Drawer.Screen name="ListItem" component={ListItemScreen} />
+        <Drawer.Screen name="DetailDesc" component={DetailListItemScreen} />
       </Drawer.Navigator>
       {/* <Stack.Navigator>
         <Stack.Screen
