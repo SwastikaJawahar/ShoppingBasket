@@ -7,14 +7,14 @@ import {
   LoginPage,
   WelcomeScreen,
   Catagories,
+  HomeScreen,
 } from './src';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import TabNavigator from './src/navigation/TabNavigator';
 
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
 const ListItemStack = createNativeStackNavigator();
 const DetailListStack = createNativeStackNavigator();
 
@@ -37,21 +37,12 @@ const DetailListStackScreen = ({navigation}) => (
     />
   </DetailListStack.Navigator>
 );
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Catagories" component={Catagories} />
-      {/* <Tab.Screen name="Settings" component={SettingsScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Notification" component={NotificationScreen} /> */}
-    </Tab.Navigator>
-  );
-}
 
 function App(navigation) {
   return (
     <NavigationContainer style={style.container}>
       <Drawer.Navigator>
+        <Drawer.Screen name="HomePage" component={TabNavigator} />
         <Drawer.Screen name="WelcomePage" component={WelcomeScreen} />
         <Drawer.Screen name="ListItem" component={ListItemScreen} />
         <Drawer.Screen name="DetailDesc" component={DetailListItemScreen} />

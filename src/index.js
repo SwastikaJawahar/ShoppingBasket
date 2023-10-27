@@ -5,6 +5,8 @@ import DetailListItemstyle from './container/DetailListItemScreen/styles';
 import LoginPage from './container/LoginPage';
 import WelcomeScreen from './container/WelcomeScreen';
 import Catagories from './container/Catagories';
+import HomeScreen from './container/HomeScreen/index.js';
+import ProfileScreen from './container/ProfileScreen';
 export {
   ListItemScreen,
   DetailListItemScreen,
@@ -13,4 +15,6 @@ export {
   LoginPage,
   WelcomeScreen,
   Catagories,
+  HomeScreen,
+  ProfileScreen,
 };
