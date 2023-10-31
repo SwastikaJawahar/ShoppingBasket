@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   TouchableOpacity: {
     height: 40,
-    backgroundColor: '#FA6290',
+    backgroundColor: '#08d4c4',
     marginVertical: 5,
     justifyContent: 'center',
     alignItems: 'center',

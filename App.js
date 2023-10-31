@@ -17,6 +17,7 @@ import TabNavigator from './src/navigation/TabNavigator';
 const Drawer = createDrawerNavigator();
 const ListItemStack = createNativeStackNavigator();
 const DetailListStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ListItemStackScreen = ({navigation}) => (
   <ListItemScreen.Navigator>
@@ -40,23 +41,28 @@ const DetailListStackScreen = ({navigation}) => (
 
 function App(navigation) {
   return (
-    <NavigationContainer style={style.container}>
-      <Drawer.Navigator>
+    <NavigationContainer style={styles.container}>
+      {/* <Drawer.Navigator screenOptions={{headerShown: false}}>
         <Drawer.Screen name="HomePage" component={TabNavigator} />
         <Drawer.Screen name="WelcomePage" component={WelcomeScreen} />
         <Drawer.Screen name="ListItem" component={ListItemScreen} />
         <Drawer.Screen name="DetailDesc" component={DetailListItemScreen} />
-      </Drawer.Navigator>
-      {/* <Stack.Navigator>
-        <Stack.Screen
+      </Drawer.Navigator> */}
+      <Stack.Navigator>
+        {/* <Stack.Screen
           options={{title: 'Shopping'}}
           name="LoginPage"
           component={LoginPage}
+        /> */}
+        <Stack.Screen
+          options={{title: 'HomeScreen'}}
+          name="HomePage"
+          component={HomeScreen}
         />
         <Stack.Screen
-          options={{title: 'Shopping Kart'}}
-          name="WelcomePage"
-          component={WelcomeScreen}
+          options={{title: 'Catagories'}}
+          name="Catagories"
+          component={Catagories}
         />
         <Stack.Screen
           options={{title: 'Shopping Kart List'}}
@@ -68,11 +74,11 @@ function App(navigation) {
           name="DetailDesc"
           component={DetailListItemScreen}
         />
-      </Stack.Navigator> */}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F7F6F0',
