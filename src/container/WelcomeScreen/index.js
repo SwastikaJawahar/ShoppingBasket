@@ -13,7 +13,7 @@ function WelcomeScreen(props) {
       }}>
       <Text style={style.TextTitle}>Welcome to Shopping Kart for Mobiles</Text>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate('HomePage')}
+        onPress={() => props.navigation.navigate('LoginPage')}
         style={style.TouchableOpacity}>
         <Text style={style.Text}>Start Shopping</Text>
       </TouchableOpacity>
