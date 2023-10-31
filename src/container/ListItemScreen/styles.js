@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   itemView: {
     flex: 2,
-    backgroundColor: '#FAF899',
+    backgroundColor: '#08d4c4',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -33,13 +33,15 @@ const styles = StyleSheet.create({
   TextInput: {
     height: 40,
     width: 300,
-    backgroundColor: '#FA99A8',
+    backgroundColor: 'white',
+    marginBottom: 20,
   },
   ButtonText: {
     marginTop: 5,
     color: 'black',
     fontWeight: 'bold',
     fontSize: 18,
+    marginBottom: 10,
   },
   formview: {
     flex: 1,
@@ -51,6 +53,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  MaterialClose: {
+    marginBottom: 100,
+    marginLeft: 300,
+  },
+  MaterialAdd: {
+    marginBottom: 20,
+    marginRight: 200,
   },
 });
 

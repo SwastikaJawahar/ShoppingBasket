@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ABF3F3',
+    backgroundColor: '#08d4c4',
     flex: 1,
     borderWidth: 2,
     borderColor: 'black',
@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   texttitle: {
-    color: '#E61320',
+    color: '#004d33',
     fontSize: 40,
     textAlign: 'center',
     marginBottom: 20,
     marginTop: 30,
   },
   textdesc: {
-    color: '#101A8E',
+    color: 'black',
     fontSize: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -30,10 +30,11 @@ const styles = StyleSheet.create({
   },
   TouchableOpacity: {
     height: 40,
-    width: 250,
-    color: 'black',
-    backgroundColor: '#F7054E',
+    width: 150,
+    backgroundColor: '#ff1a75',
+    borderRadius: 5,
     marginVertical: 50,
+    borderColor: '#08d4c4',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   TextTitle: {
-    color: 'black',
+    color: '#00e699',
     fontWeight: 'bold',
     fontSize: 50,
   },
