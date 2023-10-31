@@ -7,6 +7,7 @@ import ProfileScreen from '../container/ProfileScreen/index.js';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import LoginPage from '../container/LoginPage/index.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ const WelcomeStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="HomePage" component={HomeScreen} />
+      <Stack.Screen name="LoginPage" component={LoginPage} />
     </Stack.Navigator>
   );
 };
