@@ -7,6 +7,7 @@ import {
   TextInput,
   Modal,
 } from 'react-native';
+
 import MaterialIcons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 

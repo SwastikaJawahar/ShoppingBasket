@@ -13,68 +13,106 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabNavigator from './src/navigation/TabNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
-const ListItemStack = createNativeStackNavigator();
-const DetailListStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
 
-const ListItemStackScreen = ({navigation}) => (
-  <ListItemScreen.Navigator>
-    <ListItemStack.Screen
-      options={{title: 'Shopping Kart List'}}
+const HomeStackScreen = ({navigation}) => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen
+      options={{
+        headerStyle: {backgroundColor: '#009387'},
+        headerTintColor: '#fff',
+        title: 'HomeScreen',
+        headerLeft: () => (
+          <Icon.Button
+            name="menu"
+            size={25}
+            backgroundColor="#009387"
+            onPress={() => navigation.openDrawer()}></Icon.Button>
+        ),
+      }}
+      name="HomePage"
+      component={HomeScreen}
+    />
+    <HomeStack.Screen
+      options={{
+        headerStyle: {backgroundColor: '#009387'},
+        headerTintColor: '#fff',
+        title: 'Catagories',
+      }}
+      name="Catagories"
+      component={Catagories}
+    />
+    <HomeStack.Screen
+      options={{
+        headerStyle: {backgroundColor: '#009387'},
+        headerTintColor: '#fff',
+        title: 'Shopping Kart List',
+      }}
       name="ListItem"
       component={ListItemScreen}
     />
-  </ListItemScreen.Navigator>
-);
-
-const DetailListStackScreen = ({navigation}) => (
-  <DetailListStack.Navigator>
-    <DetailListStack.Screen
-      options={{title: 'Shopping Kart List'}}
+    <HomeStack.Screen
+      options={{
+        headerStyle: {backgroundColor: '#009387'},
+        headerTintColor: '#fff',
+        title: 'Specification',
+      }}
       name="DetailDesc"
       component={DetailListItemScreen}
     />
-  </DetailListStack.Navigator>
+  </HomeStack.Navigator>
 );
 
 function App(navigation) {
   return (
     <NavigationContainer style={styles.container}>
-      {/* <Drawer.Navigator screenOptions={{headerShown: false}}>
-        <Drawer.Screen name="HomePage" component={TabNavigator} />
-        <Drawer.Screen name="WelcomePage" component={WelcomeScreen} />
-        <Drawer.Screen name="ListItem" component={ListItemScreen} />
-        <Drawer.Screen name="DetailDesc" component={DetailListItemScreen} />
-      </Drawer.Navigator> */}
-      <Stack.Navigator>
-        {/* <Stack.Screen
-          options={{title: 'Shopping'}}
-          name="LoginPage"
-          component={LoginPage}
-        /> */}
+      <Drawer.Navigator screenOptions={{headerShown: false}}>
+        {/* <Drawer.Screen name="HomePage" component={TabNavigator} /> */}
+        <Drawer.Screen name="HomeScreen" component={HomeStackScreen} />
+        {/* <Drawer.Screen name="ListItem" component={ListItemStackScreen} /> */}
+      </Drawer.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen
-          options={{title: 'HomeScreen'}}
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'HomeScreen',
+          }}
           name="HomePage"
           component={HomeScreen}
         />
         <Stack.Screen
-          options={{title: 'Catagories'}}
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Catagories',
+          }}
           name="Catagories"
           component={Catagories}
         />
         <Stack.Screen
-          options={{title: 'Shopping Kart List'}}
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Shopping Kart List',
+          }}
           name="ListItem"
           component={ListItemScreen}
         />
         <Stack.Screen
-          options={{title: 'Specification'}}
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Specification',
+          }}
           name="DetailDesc"
           component={DetailListItemScreen}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
     </NavigationContainer>
   );
 }

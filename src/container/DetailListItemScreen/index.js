@@ -10,17 +10,18 @@ class DetailListItemScreen extends React.Component {
   }
   render() {
     const {route} = this.props;
+    console.log({route});
     return (
       <View style={styles.container}>
         <Text style={styles.texttitle}>{route.params.title}</Text>
         <Text style={styles.textdesc}>{route.params.desc}</Text>
         <TouchableOpacity
-          onPress={() => this.props.navigation.push('ListItem')}
+          onPress={() => this.props.navigation.navigate('ListItem')}
           style={styles.TouchableOpacity}>
           <Text style={styles.Text}>Go Back to List</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.popToTop()}
+          onPress={() => this.props.navigation.navigate('HomePage')}
           style={styles.TouchableOpacity}>
           <Text style={styles.Text}>Go Home</Text>
         </TouchableOpacity>
