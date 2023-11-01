@@ -14,6 +14,7 @@ import {createStackNavigator} from 'react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
 
 const HomeStackScreen = ({navigation}) => (
@@ -64,12 +65,33 @@ const HomeStackScreen = ({navigation}) => (
   </HomeStack.Navigator>
 );
 
+const AuthStackScreen = ({navigation}) => (
+  <AuthStack.Navigator>
+    <AuthStack.Screen
+      options={{
+        headerStyle: {backgroundColor: '#009387'},
+        headerTintColor: '#fff',
+        title: 'LoginScreen',
+        headerLeft: () => (
+          <Ionicons.Button
+            name="menu"
+            size={25}
+            backgroundColor="#009387"
+            onPress={() => navigation.openDrawer()}></Ionicons.Button>
+        ),
+      }}
+      name="LoginPage"
+      component={LoginPage}
+    />
+  </AuthStack.Navigator>
+);
+
 const WelcomeStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: true}}>
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       {/* <Stack.Screen name="HomePage" component={HomeScreen} /> */}
-      <Stack.Screen name="LoginPage" component={LoginPage} />
+      {<Stack.Screen name="LoginPage" component={LoginPage} />}
     </Stack.Navigator>
   );
 };

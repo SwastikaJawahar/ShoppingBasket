@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
-
     justifyContent: 'center',
     alignItems: 'center',
   },
