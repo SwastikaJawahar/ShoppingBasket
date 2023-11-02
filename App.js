@@ -15,16 +15,15 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabNavigator from './src/navigation/TabNavigator';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {PersistanceHelper} from './src/helpers';
+import {useUserContext} from './src/contexts/UserContext';
 
 const Drawer = createDrawerNavigator();
-const HomeStack = createNativeStackNavigator();
-const AuthStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator>
-    <HomeStack.Screen name="HomePage" component={HomeScreen} />
-    <HomeStack.Screen
+  <Stack.Navigator>
+    <Stack.Screen name="HomePage" component={HomeScreen} />
+    <Stack.Screen
       options={{
         headerStyle: {backgroundColor: '#009387'},
         headerTintColor: '#fff',
@@ -33,7 +32,7 @@ const HomeStackScreen = () => (
       name="Catagories"
       component={Catagories}
     />
-    <HomeStack.Screen
+    <Stack.Screen
       options={{
         headerStyle: {backgroundColor: '#009387'},
         headerTintColor: '#fff',
@@ -42,7 +41,7 @@ const HomeStackScreen = () => (
       name="ListItem"
       component={ListItemScreen}
     />
-    <HomeStack.Screen
+    <Stack.Screen
       options={{
         headerStyle: {backgroundColor: '#009387'},
         headerTintColor: '#fff',
@@ -51,38 +50,62 @@ const HomeStackScreen = () => (
       name="DetailDesc"
       component={DetailListItemScreen}
     />
-  </HomeStack.Navigator>
+  </Stack.Navigator>
 );
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
-    <AuthStack.Screen name="LoginPage" component={LoginPage} />
-  </AuthStack.Navigator>
+  <Stack.Navigator>
+    <Stack.Screen name="LoginPage" component={LoginPage} />
+  </Stack.Navigator>
 );
 
 function App({navigation}) {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  useEffect(() => {
-    PersistanceHelper.getObject('loginDetails')
-      .then(data => {
-        if (data.userName && data.password) {
-          setIsUserLoggedIn(true);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  const {
+    state: {data, pass},
+    action: {setData, setpass},
+  } = useUserContext();
+
+  const login = () => {
+    if ({data} && {pass} != '') {
+      setIsUserLoggedIn(true);
+      console.log(isUserLoggedIn);
+      console.log({data, pass});
+    } else {
+      setIsUserLoggedIn(false);
+    }
+  };
+
+  const logout = () => {
+    setIsUserLoggedIn(fasle);
+  };
+
+  // useEffect(() => {
+  //   PersistanceHelper.getObject('loginDetails')
+  //     .then(data => {
+  //       if (data.userName && data.password) {
+  //         setIsUserLoggedIn(true);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }, []);
   return (
     <NavigationContainer style={styles.container}>
-      {/* <Stack.Navigator>
-        {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
-      </Stack.Navigator> */}
-      <Drawer.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator>
+        {/* {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen} */}
+        {isUserLoggedIn ? (
+          <Stack.Screen name="HomeScreen" component={HomeStackScreen} />
+        ) : (
+          <Stack.Screen name="LoginPage" component={AuthStackScreen} />
+        )}
+      </Stack.Navigator>
+      {/* <Drawer.Navigator screenOptions={{headerShown: false}}>
         <Drawer.Screen name="HomePage" component={TabNavigator} />
-        {/* <Drawer.Screen name="HomeScreen" component={HomeStackScreen} /> */}
-        {/* <Drawer.Screen name="ListItem" component={ListItemStackScreen} /> */}
-      </Drawer.Navigator>
+        <Drawer.Screen name="HomeScreen" component={HomeStackScreen} />
+        <Drawer.Screen name="ListItem" component={ListItemStackScreen} />
+      </Drawer.Navigator> */}
     </NavigationContainer>
   );
 }
