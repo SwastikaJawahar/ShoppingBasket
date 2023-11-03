@@ -11,6 +11,10 @@ import LoginPage from '../container/LoginPage/index.js';
 import ListItemScreen from '../container/ListItemScreen/index.js';
 import DetailListItemScreen from '../container/DetailListItemScreen/index.js';
 import {createStackNavigator} from 'react-navigation/stack';
+import {
+  MainStackNavigator,
+  ProfileStack,
+} from '../navigation/StackNavigation.js';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -100,7 +104,7 @@ const TabNavigator = () => {
     <Tab.Navigator screenOptions={{tabBarShowLabel: false, headerShown: false}}>
       <Tab.Screen
         name="Home"
-        component={WelcomeStack}
+        component={MainStackNavigator}
         options={{
           tabBarIcon: ({color, size}) => (
             <Ionicons
@@ -113,17 +117,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="HomePage1"
-        component={HomeStackScreen}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Feather name="layers" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarIcon: ({color, size}) => (
             <Feather name="user" color={color} size={size} />

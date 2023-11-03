@@ -8,7 +8,7 @@ export function UserContextProvider({children, userName, password}) {
     state: {userName},
     state: {password},
   };
-
+  console.log('Context is running');
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 export function useUserContext() {
