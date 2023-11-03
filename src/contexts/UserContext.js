@@ -4,12 +4,9 @@ import {} from 'react-native';
 const UserContext = createContext({state: {}, action: {}});
 
 export function UserContextProvider({children, userName, password}) {
-  const [data, setData] = useState(userName);
-  const [pass, setpass] = useState(password);
-
   const value = {
-    state: {data, pass},
-    action: {setData, setpass},
+    state: {userName},
+    state: {password},
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

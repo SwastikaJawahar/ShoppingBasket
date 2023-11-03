@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, createContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {
   ListItemScreen,
@@ -15,98 +15,70 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabNavigator from './src/navigation/TabNavigator';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {PersistanceHelper} from './src/helpers';
-import {useUserContext} from './src/contexts/UserContext';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
+const UserContext = createContext();
 
-const HomeStackScreen = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="HomePage" component={HomeScreen} />
-    <Stack.Screen
-      options={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        title: 'Catagories',
-      }}
-      name="Catagories"
-      component={Catagories}
-    />
-    <Stack.Screen
-      options={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        title: 'Shopping Kart List',
-      }}
-      name="ListItem"
-      component={ListItemScreen}
-    />
-    <Stack.Screen
-      options={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        title: 'Specification',
-      }}
-      name="DetailDesc"
-      component={DetailListItemScreen}
-    />
-  </Stack.Navigator>
-);
+function HomeStackScreen() {
+  return (
+    <Stack.Group>
+      <Stack.Screen name="HomePage" component={HomeScreen} />
+      <Stack.Screen
+        options={{
+          headerStyle: {backgroundColor: '#009387'},
+          headerTintColor: '#fff',
+          title: 'Catagories',
+        }}
+        name="Catagories"
+        component={Catagories}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {backgroundColor: '#009387'},
+          headerTintColor: '#fff',
+          title: 'Shopping Kart List',
+        }}
+        name="ListItem"
+        component={ListItemScreen}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {backgroundColor: '#009387'},
+          headerTintColor: '#fff',
+          title: 'Specification',
+        }}
+        name="DetailDesc"
+        component={DetailListItemScreen}
+      />
+    </Stack.Group>
+  );
+}
 
-const AuthStackScreen = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="LoginPage" component={LoginPage} />
-  </Stack.Navigator>
-);
+function AuthStackScreen() {
+  return (
+    <Stack.Group>
+      <Stack.Screen name="LoginPage" component={LoginPage} />
+    </Stack.Group>
+  );
+}
 
 function App({navigation}) {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const {
-    state: {data, pass},
-    action: {setData, setpass},
-  } = useUserContext();
 
-  const login = () => {
-    if ({data} && {pass} != '') {
-      setIsUserLoggedIn(true);
-      console.log(isUserLoggedIn);
-      console.log({data, pass});
-    } else {
-      setIsUserLoggedIn(false);
-    }
-  };
-
-  const logout = () => {
-    setIsUserLoggedIn(fasle);
-  };
-
-  // useEffect(() => {
-  //   PersistanceHelper.getObject('loginDetails')
-  //     .then(data => {
-  //       if (data.userName && data.password) {
-  //         setIsUserLoggedIn(true);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }, []);
   return (
-    <NavigationContainer style={styles.container}>
-      <Stack.Navigator>
-        {/* {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen} */}
-        {isUserLoggedIn ? (
-          <Stack.Screen name="HomeScreen" component={HomeStackScreen} />
-        ) : (
-          <Stack.Screen name="LoginPage" component={AuthStackScreen} />
-        )}
-      </Stack.Navigator>
-      {/* <Drawer.Navigator screenOptions={{headerShown: false}}>
+    <UserContext.Provider value={isUserLoggedIn}>
+      <NavigationContainer style={styles.container}>
+        <Stack.Navigator>
+          {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
+        </Stack.Navigator>
+        {/* <Drawer.Navigator screenOptions={{headerShown: false}}>
         <Drawer.Screen name="HomePage" component={TabNavigator} />
         <Drawer.Screen name="HomeScreen" component={HomeStackScreen} />
         <Drawer.Screen name="ListItem" component={ListItemStackScreen} />
       </Drawer.Navigator> */}
-    </NavigationContainer>
+      </NavigationContainer>
+    </UserContext.Provider>
   );
 }
 const styles = StyleSheet.create({
