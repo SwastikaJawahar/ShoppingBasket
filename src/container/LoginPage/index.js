@@ -10,11 +10,13 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {PersistanceHelper} from '../../helpers';
-import HomeScreen from '../HomeScreen';
+import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 
 function LoginPage(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const {updatedData} = useUserContext();
+  const {isLogin} = useUserContext();
 
   return (
     <View style={styles.container}>
@@ -32,7 +34,6 @@ function LoginPage(props) {
             style={styles.textInput}
             autoCapitalize="none"
           />
-          <Feather name="eye-on" color="greeen" size={2} />
         </View>
         <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
         <View style={styles.action}>
@@ -45,11 +46,15 @@ function LoginPage(props) {
             style={styles.textInput}
             autoCapitalize="none"
           />
-          <Feather name="eye-off" color="greeen" size={2} />
         </View>
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate('HomeScreen');
+            if (userName !== '' && password !== '') {
+              updatedData(true);
+            } else {
+              updatedData(false);
+            }
+            console.log(isLogin + '  login val');
           }}
           style={styles.signIn}>
           <Text style={styles.textSign}>Get Started</Text>

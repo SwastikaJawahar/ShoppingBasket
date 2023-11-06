@@ -9,7 +9,7 @@ import ProfileScreen from '../container/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
-const MainStackNavigator = () => {
+const MainStackNavigator = props => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="HomePage" component={HomeScreen} />

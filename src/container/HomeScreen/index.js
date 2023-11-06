@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 
 function HomeScreen(props) {
   return (

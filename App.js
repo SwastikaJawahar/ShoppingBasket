@@ -16,54 +16,63 @@ import TabNavigator from './src/navigation/TabNavigator';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {PersistanceHelper} from './src/helpers';
 import {MainStackNavigator} from './src/navigation/StackNavigation';
+import {UserContextProvider, useUserContext} from './src/contexts/UserContext';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
-const UserContext = createContext();
 
-// function HomeStackScreen() {
-//   return (
-//     <Stack.Group>
-//       <Stack.Screen name="HomePage" component={HomeScreen} />
-//       <Stack.Screen
-//         options={{
-//           headerStyle: {backgroundColor: '#009387'},
-//           headerTintColor: '#fff',
-//           title: 'Catagories',
-//         }}
-//         name="Catagories"
-//         component={Catagories}
-//       />
-//       <Stack.Screen
-//         options={{
-//           headerStyle: {backgroundColor: '#009387'},
-//           headerTintColor: '#fff',
-//           title: 'Shopping Kart List',
-//         }}
-//         name="ListItem"
-//         component={ListItemScreen}
-//       />
-//       <Stack.Screen
-//         options={{
-//           headerStyle: {backgroundColor: '#009387'},
-//           headerTintColor: '#fff',
-//           title: 'Specification',
-//         }}
-//         name="DetailDesc"
-//         component={DetailListItemScreen}
-//       />
-//     </Stack.Group>
-//   );
-// }
+const Nav = () => {
+  const {isLogin} = useUserContext();
+  console.log(isLogin + ' nav');
+  function HomeStackScreen() {
+    return (
+      <Stack.Group>
+        <Stack.Screen name="HomePage" component={HomeScreen} />
+        <Stack.Screen
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Catagories',
+          }}
+          name="Catagories"
+          component={Catagories}
+        />
+        <Stack.Screen
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Shopping Kart List',
+          }}
+          name="ListItem"
+          component={ListItemScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'Specification',
+          }}
+          name="DetailDesc"
+          component={DetailListItemScreen}
+        />
+      </Stack.Group>
+    );
+  }
 
-function AuthStackScreen() {
+  function AuthStackScreen() {
+    return (
+      <Stack.Group>
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      </Stack.Group>
+    );
+  }
   return (
-    <Stack.Group>
-      <Stack.Screen name="LoginPage" component={LoginPage} />
-    </Stack.Group>
+    <Stack.Navigator>
+      {isLogin ? HomeStackScreen() : AuthStackScreen()}
+    </Stack.Navigator>
   );
-}
-
+};
 function DrawerScreen() {
   return (
     <Drawer.Navigator screenOptions={{headerShown: false}}>
@@ -74,19 +83,13 @@ function DrawerScreen() {
   );
 }
 
-function App({navigation}) {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
+function App() {
   return (
-    <UserContext.Provider value={isUserLoggedIn}>
+    <UserContextProvider>
       <NavigationContainer style={styles.container}>
-        <TabNavigator />
-        {/* <Stack.Navigator>
-          {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
-          <Stack.Screen name="DrawerScreen" component={DrawerScreen} />
-        </Stack.Navigator> */}
+        <Nav />
       </NavigationContainer>
-    </UserContext.Provider>
+    </UserContextProvider>
   );
 }
 const styles = StyleSheet.create({
