@@ -18,6 +18,11 @@ function LoginPage(props) {
   const {updatedData} = useUserContext();
   const {isLogin} = useUserContext();
 
+  const login = [
+    {user: 'swastika', pass: '1234'},
+    {user: 'admin', pass: 'admin'},
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -49,7 +54,11 @@ function LoginPage(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            if (userName !== '' && password !== '') {
+            if (
+              userName !== '' ||
+              (userName === login.user && password !== '') ||
+              password === login.pass
+            ) {
               updatedData(true);
             } else {
               updatedData(false);

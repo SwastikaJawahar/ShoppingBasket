@@ -23,7 +23,7 @@ const Stack = createNativeStackNavigator();
 
 const Nav = () => {
   const {isLogin} = useUserContext();
-  console.log(isLogin + ' nav');
+
   function HomeStackScreen() {
     return (
       <Stack.Group>
@@ -73,15 +73,15 @@ const Nav = () => {
     </Stack.Navigator>
   );
 };
-function DrawerScreen() {
+
+const DrawerScreen = () => {
   return (
     <Drawer.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name="HomePage" component={TabNavigator} />
-      <Drawer.Screen name="HomeScreen" component={HomeStackScreen} />
-      <Drawer.Screen name="ListItem" component={ListItemStackScreen} />
+      <Drawer.Screen name="Nav" component={Nav} />
+      <Drawer.Screen name="Catagories" component={MainStackNavigator} />
     </Drawer.Navigator>
   );
-}
+};
 
 function App() {
   return (

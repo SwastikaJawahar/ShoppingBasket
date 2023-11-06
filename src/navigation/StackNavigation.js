@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 const MainStackNavigator = props => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomePage" component={HomeScreen} />
+      {/* <Stack.Screen name="HomePage" component={HomeScreen} /> */}
       <Stack.Screen
         options={{
           headerStyle: {backgroundColor: '#009387'},
