@@ -3,6 +3,7 @@ import DetailListItemScreen from './container/DetailListItemScreen';
 import ListItemstyle from './container/ListItemScreen/styles';
 import DetailListItemstyle from './container/DetailListItemScreen/styles';
 import LoginPage from './container/LoginPage';
+import SignUpPage from './container/SignUpPage';
 import WelcomeScreen from './container/WelcomeScreen';
 import Catagories from './container/Catagories';
 import HomeScreen from './container/HomeScreen/index.js';
@@ -13,6 +14,7 @@ export {
   ListItemstyle,
   DetailListItemstyle,
   LoginPage,
+  SignUpPage,
   WelcomeScreen,
   Catagories,
   HomeScreen,

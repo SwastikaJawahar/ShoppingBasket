@@ -4,8 +4,9 @@ import {View, Text, StyleSheet} from 'react-native';
 import {
   ListItemScreen,
   DetailListItemScreen,
-  LoginPage,
   WelcomeScreen,
+  LoginPage,
+  SignUpPage,
   Catagories,
   HomeScreen,
 } from './src';
@@ -64,6 +65,7 @@ const Nav = () => {
       <Stack.Group>
         <Stack.Screen name="LoginPage" component={LoginPage} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="SignUpPage" component={SignUpPage} />
       </Stack.Group>
     );
   }
@@ -71,15 +73,6 @@ const Nav = () => {
     <Stack.Navigator>
       {isLogin ? HomeStackScreen() : AuthStackScreen()}
     </Stack.Navigator>
-  );
-};
-
-const DrawerScreen = () => {
-  return (
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name="Nav" component={Nav} />
-      <Drawer.Screen name="Catagories" component={MainStackNavigator} />
-    </Drawer.Navigator>
   );
 };
 

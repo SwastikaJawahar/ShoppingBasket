@@ -5,25 +5,21 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import LoginPage from '../LoginPage';
 import {PersistanceHelper} from '../../helpers';
-import SignUpPage from '../SignUpPage';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 
-function LoginPage(props) {
+function SignUpPage(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const {updatedData} = useUserContext();
-  const {isLogin} = useUserContext();
-  const login = [
-    {user: 'swastika', pass: '1234'},
-    {user: 'yeshasvi', pass: '12345'},
-  ];
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const {route} = props;
+  const objUser = {user: userName, pass: password};
 
   return (
     <View style={styles.container}>
@@ -54,43 +50,34 @@ function LoginPage(props) {
             autoCapitalize="none"
           />
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            if (route.params && route.params.objUser) {
-              const {user, pass} = route.params.objUser;
-
-              if (userName === user && password === pass) {
-                updatedData(true);
-              } else {
-                updatedData(false);
-              }
-            } else {
-              if (
-                login.find(data => data.user === userName) &&
-                login.find(data => data.pass === password)
-              ) {
-                updatedData(true);
-              } else {
-                updatedData(false);
-              }
-            }
-          }}
-          style={styles.signIn}>
-          <Text style={styles.textSign}>Get Started</Text>
-        </TouchableOpacity>
         <Text style={[styles.text_footer, {marginTop: 35}]}>
-          Not a User Click Here for Register.!
+          Confirm Password
         </Text>
+        <View style={styles.action}>
+          <Feather name="lock" color="#05375a" size={20} />
+          <TextInput
+            value={confirmPassword}
+            onChangeText={ct => setConfirmPassword(ct)}
+            secureTextEntry={true}
+            placeholder="Confirm Password"
+            style={styles.textInput}
+            autoCapitalize="none"
+          />
+        </View>
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate('SignUpPage');
+            props.navigation.navigate({
+              name: 'LoginPage',
+              params: {objUser},
+              merge: true,
+            });
           }}
           style={styles.signIn}>
-          <Text style={styles.textSign}>Register</Text>
+          <Text style={styles.textSign}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-export default LoginPage;
+export default SignUpPage;
