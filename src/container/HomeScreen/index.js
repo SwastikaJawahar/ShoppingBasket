@@ -1,9 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Button,
+} from 'react-native';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
-
+import MaterialIcons from 'react-native-vector-icons/Ionicons';
 function HomeScreen(props) {
   const [fetchData, setFetchedData] = useState([]);
+  const {updatedData} = useUserContext();
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(x => x.json())
@@ -13,6 +21,14 @@ function HomeScreen(props) {
   return (
     <View style={style.Container}>
       <View style={style.header}>
+        <View style={{marginLeft: 300}}>
+          <Button
+            title="Logout"
+            onPress={() => {
+              updatedData(false);
+            }}
+          />
+        </View>
         <Text style={style.TextContent}>DashBoard</Text>
         <FlatList
           data={fetchData}
