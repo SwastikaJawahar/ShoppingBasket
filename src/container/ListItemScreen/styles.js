@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#08d4c4',
     marginVertical: 5,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
+  TextCost: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginHorizontal: 20,
+  },
   MaterialClose: {
     marginBottom: 100,
     marginLeft: 300,
@@ -61,6 +67,10 @@ const styles = StyleSheet.create({
   MaterialAdd: {
     marginBottom: 20,
     marginRight: 200,
+  },
+  MaterialCart: {
+    fontSize: 30,
+    marginHorizontal: 60,
   },
 });
 

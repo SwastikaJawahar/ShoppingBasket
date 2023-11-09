@@ -6,33 +6,44 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
+  Button,
 } from 'react-native';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {addCart, removeCart, clearCart} from '../../features/cart/cart';
 import MaterialIcons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 function ListItemScreen(props) {
+  const dispatch = useDispatch();
   let dataitem = [
     {
       title: 'IPhone 15 Pro',
       desc: 'iPhone 15 Pro Max. Forged in titanium and featuring the groundbreaking A17 Pro chip, a customisable Action button and the most powerful iPhone camera system ever.',
+      cost: '150GPB',
     },
     {
       title: 'Iphone 14 Pro Max',
       desc: 'Apple iPhone 14 with Super Retina XDR 6.1‑inch display. iPhone 14 colours - Yellow, Midnight, Purple, Starlight, (PRODUCT)RED and Blue.',
+      cost: '200GPB',
     },
     {
       title: 'Oneplus 10 Pro',
       desc: 'It features a 1440p LTPO OLED panel that’s gently curved on the long edges. Its 20:9 aspect ratio is a hair taller than the S22 Plus and Pixel 6 Pro’s displays, and it matches their top refresh rate of 120Hz.',
+      cost: '100GPB',
     },
   ];
   const [itemList, setItemList] = useState(dataitem);
   const [mobileName, setMobileName] = useState('');
   const [mobileModel, setMobileModel] = useState('');
   const [detaildesc, setDetailDesc] = useState('');
+  const [cost, setCost] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
-  let newlist = {title: mobileName + ' ' + mobileModel, desc: detaildesc};
+  let newlist = {
+    title: mobileName + ' ' + mobileModel,
+    desc: detaildesc,
+    cost: cost,
+  };
 
   function addItemFunction() {
     setItemList([...itemList, newlist]);
@@ -67,6 +78,14 @@ function ListItemScreen(props) {
                 }}
                 style={styles.TouchableOpacity}>
                 <Text style={styles.Text}>{item.title}</Text>
+                <Text style={styles.TextCost}>{item.cost}</Text>
+                <MaterialIcons
+                  style={styles.MaterialCart}
+                  name="cart-outline"
+                  onPress={() => {
+                    dispatch(addCart(item));
+                  }}
+                />
               </TouchableOpacity>
             </View>
           );
@@ -85,7 +104,7 @@ function ListItemScreen(props) {
             />
             <Text style={styles.ButtonText}>Mobile Name</Text>
             <TextInput
-              style={style.TextInput}
+              style={styles.TextInput}
               value={mobileName}
               placeholder="Enter Brand Name"
               onChangeText={text => setMobileName(text)}
@@ -103,6 +122,13 @@ function ListItemScreen(props) {
               value={detaildesc}
               style={styles.TextInput}
               onChangeText={changedtext => setDetailDesc(changedtext)}
+            />
+            <Text style={styles.ButtonText}>Cost of Mobile</Text>
+            <TextInput
+              placeholder="Enter Cost"
+              value={cost}
+              style={styles.TextInput}
+              onChangeText={changedtext => setCost(changedtext)}
             />
             <TouchableOpacity
               onPress={addItemFunction}
