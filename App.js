@@ -9,7 +9,10 @@ import {
   SignUpPage,
   Catagories,
   HomeScreen,
+  CounterReduxScreen,
 } from './src';
+import store from './src/store';
+import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -28,6 +31,10 @@ const Nav = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="CounterReduxScreen"
+          component={CounterReduxScreen}
+        />
         <Stack.Screen name="HomePage" component={HomeScreen} />
         <Stack.Screen
           options={{
@@ -78,11 +85,13 @@ const Nav = () => {
 
 function App() {
   return (
-    <UserContextProvider>
-      <NavigationContainer style={styles.container}>
-        <Nav />
-      </NavigationContainer>
-    </UserContextProvider>
+    <Provider store={store}>
+      <UserContextProvider>
+        <NavigationContainer style={styles.container}>
+          <Nav />
+        </NavigationContainer>
+      </UserContextProvider>
+    </Provider>
   );
 }
 const styles = StyleSheet.create({

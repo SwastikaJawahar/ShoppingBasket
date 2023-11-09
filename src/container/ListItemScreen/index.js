@@ -85,7 +85,7 @@ function ListItemScreen(props) {
             />
             <Text style={styles.ButtonText}>Mobile Name</Text>
             <TextInput
-              style={styles.TextInput}
+              style={style.TextInput}
               value={mobileName}
               placeholder="Enter Brand Name"
               onChangeText={text => setMobileName(text)}

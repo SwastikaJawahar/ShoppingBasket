@@ -8,6 +8,7 @@ import WelcomeScreen from './container/WelcomeScreen';
 import Catagories from './container/Catagories';
 import HomeScreen from './container/HomeScreen/index.js';
 import ProfileScreen from './container/ProfileScreen';
+import CounterReduxScreen from './container/CounterReduxScreen';
 export {
   ListItemScreen,
   DetailListItemScreen,
@@ -19,4 +20,5 @@ export {
   Catagories,
   HomeScreen,
   ProfileScreen,
+  CounterReduxScreen,
 };
