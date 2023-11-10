@@ -54,7 +54,12 @@ function ListItemScreen(props) {
   }
   return (
     <View
-      style={{flex: 1, justifyContent: 'center', backgroundColor: '#e6fff7'}}>
+      style={{
+        flex: 1,
+
+        justifyContent: 'flex-start',
+        backgroundColor: '#e6fff7',
+      }}>
       <MaterialIcons
         style={styles.MaterialAdd}
         name="add"
@@ -63,30 +68,72 @@ function ListItemScreen(props) {
           setModalOpen(true);
         }}
       />
+      <View style={styles.Titlerow}>
+        <View style={styles.Titlecolumn}>
+          <Text style={styles.Text}>Title</Text>
+        </View>
+        <View style={styles.Titlecolumn}>
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: 15,
+              marginLeft: 30,
+            }}>
+            {' '}
+            Cost
+          </Text>
+        </View>
+        <View style={styles.Titlecolumn}>
+          <Text style={styles.Text}>Add</Text>
+        </View>
+        <View style={styles.Titlecolumn}>
+          <Text style={styles.Text}>Remove</Text>
+        </View>
+      </View>
       <FlatList
         keyExtractor={(itemList, index) => index.toString()}
         data={itemList}
         renderItem={({item}) => {
           return (
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  props.navigation.navigate('DetailDesc', {
-                    title: item.title,
-                    desc: item.desc,
-                  });
-                }}
-                style={styles.TouchableOpacity}>
-                <Text style={styles.Text}>{item.title}</Text>
-                <Text style={styles.TextCost}>{item.cost}</Text>
-                <MaterialIcons
-                  style={styles.MaterialCart}
-                  name="cart-outline"
+            <View style={styles.row}>
+              <View style={styles.column}>
+                <TouchableOpacity
                   onPress={() => {
-                    dispatch(addCart(item));
+                    props.navigation.navigate('DetailDesc', {
+                      title: item.title,
+                      desc: item.desc,
+                    });
                   }}
-                />
-              </TouchableOpacity>
+                  style={styles.TouchableOpacity}>
+                  <View style={styles.row}>
+                    <View style={styles.column}>
+                      <Text style={styles.Text}>{item.title}</Text>
+                    </View>
+                    <View style={styles.TextColumn}>
+                      <Text style={styles.TextCost}>{item.cost}</Text>
+                    </View>
+                    <View style={styles.column}>
+                      <MaterialIcons
+                        style={styles.MaterialAdd}
+                        name="add"
+                        onPress={() => {
+                          dispatch(addCart(item));
+                        }}
+                      />
+                    </View>
+                    <View>
+                      <MaterialIcons
+                        style={styles.MaterialRemove}
+                        name="remove-outline"
+                        onPress={() => {
+                          dispatch(removeCart(item));
+                        }}
+                      />
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
             </View>
           );
         }}

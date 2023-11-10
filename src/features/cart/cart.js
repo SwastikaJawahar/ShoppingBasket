@@ -21,6 +21,7 @@ export const cartSlice = createSlice({
     },
     removeCart: (state, action) => {
       const itemToRemove = action.payload;
+      const itemFound = '';
       const itemPresent = state.cartItems.findIndex(thisElement => {
         return thisElement.item.title === itemToRemove.title;
       });
@@ -30,13 +31,18 @@ export const cartSlice = createSlice({
         itemFound.quantity -= 1;
       }
       if (itemPresent.quantity === 0) {
-        updatedCartItems.splice(itemPresentIndex, 1);
-      } else {
-        state.cartItems.push({item: itemToAdd, quantity: 1});
+        itemFound = updatedCartItems.splice(itemPresent);
+        itemFound.quantity -= 1;
       }
-      return {...state, cartItems: updatedCartItems};
+      if (itemFound.quantity === 0) {
+        updatedCartItems.splice(itemPresent, 1);
+      } else {
+        console.log('Item not found in the cart:', itemToRemove);
+      }
     },
-    clearCart: state => {},
+    clearCart: state => {
+      return {...state, cartItems: []};
+    },
   },
 });
 

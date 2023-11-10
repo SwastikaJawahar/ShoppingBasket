@@ -11,15 +11,19 @@ import {
   CartScreen,
 } from '../index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIconsCom from 'react-native-vector-icons/MaterialCommunityIcons';
 import {UserContextProvider, useUserContext} from '../contexts/UserContext';
 import styles from '../container/ListItemScreen/styles';
 import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {clearCart} from '../features/cart/cart';
 
 const Stack = createNativeStackNavigator();
 
 const MainStackNavigator = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {isLogin} = useUserContext();
 
   function HomeStackScreen() {
@@ -44,6 +48,15 @@ const MainStackNavigator = () => {
             headerStyle: {backgroundColor: '#009387'},
             headerTintColor: '#fff',
             title: 'CartScreen',
+            headerRight: () => (
+              <MaterialIconsCom
+                style={style.MaterialCart}
+                name="cart-remove"
+                onPress={() => {
+                  dispatch(clearCart());
+                }}
+              />
+            ),
           }}
           name="CartScreen"
           component={CartScreen}

@@ -9,11 +9,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   body: {
     flex: 1,
     backgroundColor: '#F7F6F0',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   itemView: {
@@ -49,16 +50,42 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  row: {
+    marginBottom: 5,
+    backgroundColor: '#08d4c4',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  Titlerow: {
+    backgroundColor: '#D40818',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 5,
+    marginTop: 5,
+    height: 40,
+  },
+  column: {
+    flex: 1,
+  },
+  Titlecolumn: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   Text: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 15,
+  },
+  TextColumn: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   TextCost: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
-    marginHorizontal: 20,
+    fontSize: 15,
   },
   MaterialClose: {
     marginBottom: 100,
@@ -68,9 +95,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 200,
   },
-  MaterialCart: {
+  MaterialRemove: {
     fontSize: 30,
-    marginHorizontal: 60,
+    marginRight: 20,
+  },
+  MaterialAdd: {
+    fontSize: 30,
+    marginLeft: 45,
   },
 });
 
