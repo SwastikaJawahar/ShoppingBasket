@@ -1,6 +1,7 @@
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
-import counterReducer from './features/counter/counter';
-import cartReducer from './features/cart/cart';
+import counterReducer from './features/counter/counterSlice';
+import cartReducer from './features/cart/cartSlice';
+import authReducer from './features/Auth/authSlice';
 import {createLogger} from 'redux-logger';
 
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
@@ -14,6 +15,7 @@ export default configureStore({
   reducer: {
     counter: counterReducer,
     cart: cartReducer,
+    auth: authReducer,
   },
 
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),

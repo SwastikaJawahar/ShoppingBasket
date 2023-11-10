@@ -16,16 +16,16 @@ import {UserContextProvider, useUserContext} from '../contexts/UserContext';
 import styles from '../container/ListItemScreen/styles';
 import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {clearCart} from '../features/cart/cart';
+import {useDispatch, useSelector} from 'react-redux';
+import {clearCart} from '../features/cart/cartSlice';
 
 const Stack = createNativeStackNavigator();
 
 const MainStackNavigator = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {isLogin} = useUserContext();
-
+  // const {isLogin} = useUserContext();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   function HomeStackScreen() {
     return (
       <Stack.Group>
@@ -103,7 +103,7 @@ const MainStackNavigator = () => {
   }
   return (
     <Stack.Navigator>
-      {isLogin ? HomeStackScreen() : AuthStackScreen()}
+      {isAuthenticated ? HomeStackScreen() : AuthStackScreen()}
     </Stack.Navigator>
   );
 };

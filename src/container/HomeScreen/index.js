@@ -9,9 +9,14 @@ import {
 } from 'react-native';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import MaterialIcons from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {logout} from '../../features/Auth/authSlice';
+
 function HomeScreen(props) {
   const [fetchData, setFetchedData] = useState([]);
   const {updatedData} = useUserContext();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(x => x.json())
@@ -25,7 +30,7 @@ function HomeScreen(props) {
           <Button
             title="Logout"
             onPress={() => {
-              updatedData(false);
+              dispatch(logout());
             }}
           />
         </View>

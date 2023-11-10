@@ -9,7 +9,7 @@ import {
   Button,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addCart, removeCart, clearCart} from '../../features/cart/cart';
+import {addCart, removeCart, clearCart} from '../../features/cart/cartSlice';
 import MaterialIcons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 

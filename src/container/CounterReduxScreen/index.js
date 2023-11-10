@@ -6,7 +6,7 @@ import {
   increment,
   decrement,
   incrementByAmount,
-} from '../../features/counter/counter';
+} from '../../features/counter/counterSlice';
 
 const CounterReduxScreen = () => {
   const [val, setVal] = useState('');

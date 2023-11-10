@@ -12,19 +12,22 @@ import Feather from 'react-native-vector-icons/Feather';
 import {PersistanceHelper} from '../../helpers';
 import SignUpPage from '../SignUpPage';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
+import {useDispatch, useSelector} from 'react-redux';
+import {login, logout} from '../../features/Auth/authSlice';
 
 function LoginPage(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const {updatedData} = useUserContext();
   const {isLogin} = useUserContext();
-  const login = [
-    {user: 'swastika', pass: '1234'},
-    {user: 'yeshasvi', pass: '12345'},
-  ];
 
-  const {route} = props;
+  const dispatch = useDispatch();
+  // const {route} = props;
 
+  const handleLogin = () => {
+    const user = {username: userName, password: password};
+    dispatch(login(user));
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -56,24 +59,25 @@ function LoginPage(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            if (route.params && route.params.objUser) {
-              const {user, pass} = route.params.objUser;
+            handleLogin();
+            // if (route.params && route.params.objUser) {
+            //   const {user, pass} = route.params.objUser;
 
-              if (userName === user && password === pass) {
-                updatedData(true);
-              } else {
-                updatedData(false);
-              }
-            } else {
-              if (
-                login.find(data => data.user === userName) &&
-                login.find(data => data.pass === password)
-              ) {
-                updatedData(true);
-              } else {
-                updatedData(false);
-              }
-            }
+            //   if (userName === user && password === pass) {
+            //     updatedData(true);
+            //   } else {
+            //     updatedData(false);
+            //   }
+            // } else {
+            //   if (
+            //     login.find(data => data.user === userName) &&
+            //     login.find(data => data.pass === password)
+            //   ) {
+            //     updatedData(true);
+            //   } else {
+            //     updatedData(false);
+            //   }
+            // }
           }}
           style={styles.signIn}>
           <Text style={styles.textSign}>Get Started</Text>
