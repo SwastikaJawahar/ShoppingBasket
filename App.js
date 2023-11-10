@@ -1,94 +1,19 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useState, createContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {
-  ListItemScreen,
-  DetailListItemScreen,
-  WelcomeScreen,
-  LoginPage,
-  SignUpPage,
-  Catagories,
-  HomeScreen,
-  CounterReduxScreen,
-} from './src';
+
 import store from './src/store';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import TabNavigator from './src/navigation/TabNavigator';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {PersistanceHelper} from './src/helpers';
 import {MainStackNavigator} from './src/navigation/StackNavigation';
-import {UserContextProvider, useUserContext} from './src/contexts/UserContext';
-
-const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
-
-const Nav = () => {
-  const {isLogin} = useUserContext();
-
-  function HomeStackScreen() {
-    return (
-      <Stack.Group>
-        <Stack.Screen
-          name="CounterReduxScreen"
-          component={CounterReduxScreen}
-        />
-        <Stack.Screen name="HomePage" component={HomeScreen} />
-        <Stack.Screen
-          options={{
-            headerStyle: {backgroundColor: '#009387'},
-            headerTintColor: '#fff',
-            title: 'Catagories',
-          }}
-          name="Catagories"
-          component={Catagories}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {backgroundColor: '#009387'},
-            headerTintColor: '#fff',
-            title: 'Shopping Kart List',
-          }}
-          name="ListItem"
-          component={ListItemScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {backgroundColor: '#009387'},
-            headerTintColor: '#fff',
-            title: 'Specification',
-          }}
-          name="DetailDesc"
-          component={DetailListItemScreen}
-        />
-      </Stack.Group>
-    );
-  }
-
-  function AuthStackScreen() {
-    return (
-      <Stack.Group>
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="SignUpPage" component={SignUpPage} />
-      </Stack.Group>
-    );
-  }
-  return (
-    <Stack.Navigator>
-      {isLogin ? HomeStackScreen() : AuthStackScreen()}
-    </Stack.Navigator>
-  );
-};
-
+import {UserContextProvider} from './src/contexts/UserContext';
 function App() {
   return (
     <Provider store={store}>
       <UserContextProvider>
         <NavigationContainer style={styles.container}>
-          <Nav />
+          <MainStackNavigator />
         </NavigationContainer>
       </UserContextProvider>
     </Provider>

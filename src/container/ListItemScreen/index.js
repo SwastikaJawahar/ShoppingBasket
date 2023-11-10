@@ -19,17 +19,17 @@ function ListItemScreen(props) {
     {
       title: 'IPhone 15 Pro',
       desc: 'iPhone 15 Pro Max. Forged in titanium and featuring the groundbreaking A17 Pro chip, a customisable Action button and the most powerful iPhone camera system ever.',
-      cost: '150GPB',
+      cost: 150,
     },
     {
       title: 'Iphone 14 Pro Max',
       desc: 'Apple iPhone 14 with Super Retina XDR 6.1‑inch display. iPhone 14 colours - Yellow, Midnight, Purple, Starlight, (PRODUCT)RED and Blue.',
-      cost: '200GPB',
+      cost: 200,
     },
     {
       title: 'Oneplus 10 Pro',
       desc: 'It features a 1440p LTPO OLED panel that’s gently curved on the long edges. Its 20:9 aspect ratio is a hair taller than the S22 Plus and Pixel 6 Pro’s displays, and it matches their top refresh rate of 120Hz.',
-      cost: '100GPB',
+      cost: 100,
     },
   ];
   const [itemList, setItemList] = useState(dataitem);

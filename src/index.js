@@ -9,6 +9,7 @@ import Catagories from './container/Catagories';
 import HomeScreen from './container/HomeScreen/index.js';
 import ProfileScreen from './container/ProfileScreen';
 import CounterReduxScreen from './container/CounterReduxScreen';
+import CartScreen from './container/CartScreen';
 export {
   ListItemScreen,
   DetailListItemScreen,
@@ -21,4 +22,5 @@ export {
   HomeScreen,
   ProfileScreen,
   CounterReduxScreen,
+  CartScreen,
 };
