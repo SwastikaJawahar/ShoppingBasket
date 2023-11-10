@@ -11,6 +11,7 @@ import {
   CartScreen,
 } from '../index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIconsSimple from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIconsCom from 'react-native-vector-icons/MaterialCommunityIcons';
 import {UserContextProvider, useUserContext} from '../contexts/UserContext';
 import styles from '../container/ListItemScreen/styles';
@@ -18,6 +19,7 @@ import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../features/cart/cartSlice';
+import {logout} from '../features/Auth/authSlice';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +35,21 @@ const MainStackNavigator = () => {
           name="CounterReduxScreen"
           component={CounterReduxScreen}
         /> */}
-        <Stack.Screen name="HomePage" component={HomeScreen} />
+        <Stack.Screen
+          options={{
+            headerRight: () => (
+              <MaterialIconsSimple
+                style={style.MaterialCart}
+                name="logout"
+                onPress={() => {
+                  dispatch(logout());
+                }}
+              />
+            ),
+          }}
+          name="HomePage"
+          component={HomeScreen}
+        />
         <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},
