@@ -11,21 +11,27 @@ import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
 import {PersistanceHelper} from '../../helpers';
+import {APIHelper} from '../../helpers';
+import {kApiTodos} from '../../config/WebService';
 
 function HomeScreen(props) {
   const [fetchData, setFetchedData] = useState([]);
   const {updatedData} = useUserContext();
   const dispatch = useDispatch();
-  const [fetchedval, setFetchedval] = useState([]);
+  let fetchedval = '';
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(x => x.json())
-      .then(data => setFetchedData(data))
-      .catch(err => console.log(err));
+    APIHelper.get(kApiTodos)
+      .then(response => {
+        setData(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
   useEffect(async () => {
-    setFetchedval = await PersistanceHelper.getValue('userName');
+    fetchedval = await PersistanceHelper.getValue('userName');
   }, []);
   return (
     <View style={style.Container}>
@@ -33,15 +39,16 @@ function HomeScreen(props) {
         <Text style={style.TextContent}>DashBoard</Text>
         <Text style={style.TextContent}>{fetchedval}</Text>
         <FlatList
-          data={fetchData}
+          data={data}
           initialNumToRender={20}
           renderItem={({item, index}) => {
             return (
               <View>
                 <TouchableOpacity style={style.flatList}>
-                  <Text style={style.Text}>
-                    {item.id} {item.title}
-                  </Text>
+                  <View>
+                    <Text style={style.Text}>{item.userId}</Text>
+                    <Text style={style.Text}>{item.title}</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
             );

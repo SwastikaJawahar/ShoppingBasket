@@ -1,3 +1,3 @@
 import PersistanceHelper from './PersistanceHelper';
-
-export {PersistanceHelper};
+import APIHelper from './APIHelper';
+export {PersistanceHelper, APIHelper};

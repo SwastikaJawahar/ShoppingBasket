@@ -10,7 +10,6 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {PersistanceHelper} from '../../helpers';
-import SignUpPage from '../SignUpPage';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, logout} from '../../features/Auth/authSlice';
