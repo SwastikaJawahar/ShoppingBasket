@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "780849950034",
+    "project_id": "shoppingbasket-79f36",
+    "storage_bucket": "shoppingbasket-79f36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780849950034:android:59887d12c06b48d3d61e8b",
+        "android_client_info": {
+          "package_name": "com.shoppingbasket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoBUDhKR7afy5U4Af_ZMiQXjr8qqr5hf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

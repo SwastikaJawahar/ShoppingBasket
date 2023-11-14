@@ -10,11 +10,13 @@ import {
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
+import {PersistanceHelper} from '../../helpers';
 
 function HomeScreen(props) {
   const [fetchData, setFetchedData] = useState([]);
   const {updatedData} = useUserContext();
   const dispatch = useDispatch();
+  const [fetchedval, setFetchedval] = useState([]);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
@@ -22,10 +24,14 @@ function HomeScreen(props) {
       .then(data => setFetchedData(data))
       .catch(err => console.log(err));
   }, []);
+  useEffect(async () => {
+    setFetchedval = await PersistanceHelper.getValue('userName');
+  }, []);
   return (
     <View style={style.Container}>
       <View style={style.header}>
         <Text style={style.TextContent}>DashBoard</Text>
+        <Text style={style.TextContent}>{fetchedval}</Text>
         <FlatList
           data={fetchData}
           initialNumToRender={20}

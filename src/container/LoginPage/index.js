@@ -1,4 +1,4 @@
-import {React, useContext, useState} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -24,10 +24,15 @@ function LoginPage(props) {
   const dispatch = useDispatch();
   // const {route} = props;
 
+  useEffect(() => {
+    PersistanceHelper.setValue('userName', userName);
+  }, [userName]);
+
   const handleLogin = () => {
     const user = {username: userName, password: password};
     dispatch(login(user));
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
