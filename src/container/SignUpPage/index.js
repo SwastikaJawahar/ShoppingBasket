@@ -1,4 +1,4 @@
-import {React, useContext, useState} from 'react';
+import {React, useContext, useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -15,19 +15,37 @@ import {PersistanceHelper} from '../../helpers';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../features/Auth/authSlice';
+import {userActions} from '../../features/UserApi/UserSlice';
+import {APIHelper} from '../../helpers';
+import {kApiUserSignUp} from '../../config/WebService';
+
+const {request, success, failure} = userActions;
 
 function SignUpPage(props) {
-  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState(undefined);
+
+  const user = useSelector(state => state.user);
+
+  // useEffect(() => {
+  //   if (user?.errorMessage?.message) {
+  //     //   Alert.alert('Error', user?.errorMessage?.message);
+  //     setErrorMsg(user?.errorMessage?.message);
+  //   } else {
+  //     setErrorMsg(undefined);
+  //   }
+  // }, [user]);
+
   const dispatch = useDispatch();
 
-  const handleRegister = () => {
-    const user = {username: userName, password: password};
-    dispatch(register(user));
-  };
+  // const handleRegister = () => {
+  //   const user = {username: userName, password: password};
+  //   dispatch(register(user));
+  // };
 
-  const objUser = {user: userName, pass: password};
+  // const objUser = {user: userName, pass: password};
 
   return (
     <View style={styles.container}>
@@ -39,8 +57,8 @@ function SignUpPage(props) {
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#05375a" size={20} />
           <TextInput
-            value={userName}
-            onChangeText={ct => setUserName(ct)}
+            value={email}
+            onChangeText={ct => setEmail(ct)}
             placeholder="Your Email"
             style={styles.textInput}
             autoCapitalize="none"
@@ -76,14 +94,25 @@ function SignUpPage(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            handleRegister();
+            // handleRegister();
+            dispatch(request({email, password}));
 
-            props.navigation.navigate({
-              name: 'LoginPage',
-              params: {objUser},
-              merge: true,
-            });
+            APIHelper.post(kApiUserSignUp, {email, password})
+              .then(response => {
+                dispatch(success(response));
+
+                props.navigation.navigate('LoginPage');
+              })
+              .catch(error => {
+                dispatch(failure(error));
+              });
           }}
+          //   props.navigation.navigate({
+          //     name: 'LoginPage',
+          //     params: {objUser},
+          //     merge: true,
+          //   });
+          // }}
           style={styles.signIn}>
           <Text style={styles.textSign}>Sign Up</Text>
         </TouchableOpacity>

@@ -13,9 +13,14 @@ import {PersistanceHelper} from '../../helpers';
 import {UserContextProvider, useUserContext} from '../../contexts/UserContext';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, logout} from '../../features/Auth/authSlice';
+import {userActions} from '../../features/UserApi/UserSlice';
+import {kApiUserLogin} from '../../config/WebService';
+import {APIHelper} from '../../helpers';
+
+const {request, success, failure} = userActions;
 
 function LoginPage(props) {
-  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {updatedData} = useUserContext();
   const {isLogin} = useUserContext();
@@ -23,14 +28,14 @@ function LoginPage(props) {
   const dispatch = useDispatch();
   // const {route} = props;
 
-  useEffect(() => {
-    PersistanceHelper.setValue('userName', userName);
-  }, [userName]);
+  // useEffect(() => {
+  //   PersistanceHelper.setValue('userName', userName);
+  // }, [userName]);
 
-  const handleLogin = () => {
-    const user = {username: userName, password: password};
-    dispatch(login(user));
-  };
+  // const handleLogin = () => {
+  //   const user = {username: userName, password: password};
+  //   dispatch(login(user));
+  // };
 
   return (
     <View style={styles.container}>
@@ -42,8 +47,8 @@ function LoginPage(props) {
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#05375a" size={20} />
           <TextInput
-            value={userName}
-            onChangeText={ct => setUserName(ct)}
+            value={email}
+            onChangeText={ct => setEmail(ct)}
             placeholder="Your Email"
             style={styles.textInput}
             autoCapitalize="none"
@@ -62,27 +67,43 @@ function LoginPage(props) {
           />
         </View>
         <TouchableOpacity
-          onPress={() => {
-            handleLogin();
-            // if (route.params && route.params.objUser) {
-            //   const {user, pass} = route.params.objUser;
+          onPress={async () => {
+            // PersistanceHelper.setObject('loginDetails', {username, password});
+            dispatch(request({email, password}));
 
-            //   if (userName === user && password === pass) {
-            //     updatedData(true);
-            //   } else {
-            //     updatedData(false);
-            //   }
-            // } else {
-            //   if (
-            //     login.find(data => data.user === userName) &&
-            //     login.find(data => data.pass === password)
-            //   ) {
-            //     updatedData(true);
-            //   } else {
-            //     updatedData(false);
-            //   }
-            // }
+            try {
+              const response = await APIHelper.post(kApiUserLogin, {
+                email,
+                password,
+              });
+
+              dispatch(success(response));
+              setEmail('');
+              setPassword('');
+            } catch (error) {
+              dispatch(failure(error));
+            }
           }}
+          /* handleLogin();
+            if (route.params && route.params.objUser) {
+              const {user, pass} = route.params.objUser;
+
+              if (userName === user && password === pass) {
+                updatedData(true);
+              } else {
+                updatedData(false);
+              }
+            } else {
+              if (
+                login.find(data => data.user === userName) &&
+                login.find(data => data.pass === password)
+              ) {
+                updatedData(true);
+              } else {
+                updatedData(false);
+              }
+            } */
+
           style={styles.signIn}>
           <Text style={styles.textSign}>Get Started</Text>
         </TouchableOpacity>

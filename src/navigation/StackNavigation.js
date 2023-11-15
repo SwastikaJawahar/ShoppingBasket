@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   HomeScreen,
@@ -19,15 +19,29 @@ import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../features/cart/cartSlice';
-import {logout} from '../features/Auth/authSlice';
+import {logout} from '../features/UserApi/UserSlice';
+// import {logout} from '../features/Auth/authSlice';
 
 const Stack = createNativeStackNavigator();
 
 const MainStackNavigator = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  useEffect(() => {
+    setIsUserLoggedIn(user?.data?.id ? true : false);
+    setIsUserLoggedIn(
+      user?.data?.accessToken &&
+        typeof user?.data?.accessToken === 'string' &&
+        user?.data?.accessToken.length > 50
+        ? true
+        : false,
+    );
+  }, [user]);
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(user?.data?.id);
   // const {isLogin} = useUserContext();
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   function HomeStackScreen() {
     return (
       <Stack.Group>
@@ -119,7 +133,7 @@ const MainStackNavigator = () => {
   }
   return (
     <Stack.Navigator>
-      {isAuthenticated ? HomeStackScreen() : AuthStackScreen()}
+      {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
     </Stack.Navigator>
   );
 };
