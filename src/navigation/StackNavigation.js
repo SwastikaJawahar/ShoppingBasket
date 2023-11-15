@@ -19,7 +19,7 @@ import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../features/cart/cartSlice';
-import {logout} from '../features/UserApi/UserSlice';
+import {logOut} from '../features/UserApi/UserSlice';
 // import {logout} from '../features/Auth/authSlice';
 
 const Stack = createNativeStackNavigator();
@@ -56,7 +56,7 @@ const MainStackNavigator = () => {
                 style={style.MaterialCart}
                 name="logout"
                 onPress={() => {
-                  dispatch(logout());
+                  dispatch(logOut());
                 }}
               />
             ),

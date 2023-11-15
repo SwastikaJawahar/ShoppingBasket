@@ -25,7 +25,7 @@ const userSlice = createSlice({
       state.failure = true;
       state.errorMessage = action.payload;
     },
-    logout: state => {
+    logOut: (state, actions) => {
       state.data = {};
     },
   },
