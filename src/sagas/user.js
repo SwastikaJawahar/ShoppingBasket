@@ -22,7 +22,7 @@ function* watchRequest() {
       const {url, data, header, requestType} = payload;
       if (requestType === 'Logout') {
         response = yield call(callDeleteRequest, url, header);
-        console.log(yield put(logout()));
+        console.log(yield put(logout()) + 'yeildput');
         yield put(logout());
       } else {
         response = yield call(callPostRequest, url, data);
