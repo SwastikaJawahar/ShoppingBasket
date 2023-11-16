@@ -30,9 +30,9 @@ function HomeScreen(props) {
         console.log(err);
       });
   }, []);
-  useEffect(async () => {
-    fetchedval = await PersistanceHelper.getValue('userName');
-  }, []);
+  // useEffect(async () => {
+  //   fetchedval = await PersistanceHelper.getValue('userName');
+  // }, []);
   return (
     <View style={style.Container}>
       <View style={style.header}>

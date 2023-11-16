@@ -18,14 +18,15 @@ const userSlice = createSlice({
       }
       state.isFetching = false;
       state.failure = false;
-      state.errorMessage = '';
+      state.errorMessage = {};
     },
     failure: (state, action) => {
       state.isFetching = false;
       state.failure = true;
       state.errorMessage = action.payload;
     },
-    logOut: (state, actions) => {
+    logout: (state, action) => {
+      state.isFetching = false;
       state.data = {};
     },
   },

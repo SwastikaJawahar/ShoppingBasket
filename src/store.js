@@ -1,24 +1,32 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
-import counterReducer from './features/counter/counterSlice';
-import cartReducer from './features/cart/cartSlice';
-import authReducer from './features/Auth/authSlice';
-import userReducer from './features/UserApi/UserSlice';
+import {configureStore} from '@reduxjs/toolkit';
 import {createLogger} from 'redux-logger';
 
-const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
-const logger = createLogger({
-  predicate: () => isDebuggingInChrome,
-  collapsed: true,
-  duration: true,
-  diff: true,
-});
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-    cart: cartReducer,
-    auth: authReducer,
-    user: userReducer,
-  },
+import {combineReducers} from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
+import persistStore from 'redux-persist/lib/persistStore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import reducers from './features/reducers';
+import sagas from './sagas';
+import createSagaMiddleware from 'redux-saga';
 
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
+let persistConfig = {key: 'root', storage: AsyncStorage};
+
+let rootReducer = combineReducers(reducers);
+
+let persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const sagaMiddleware = createSagaMiddleware();
+
+const logger = createLogger();
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(logger, sagaMiddleware),
 });
+
+sagaMiddleware.run(sagas);
+
+export const persistor = persistStore(store);

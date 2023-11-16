@@ -19,17 +19,20 @@ import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../features/cart/cartSlice';
-import {logOut} from '../features/UserApi/UserSlice';
+import {logout} from '../features/UserApi/UserSlice';
 // import {logout} from '../features/Auth/authSlice';
+import {userActions} from '../features/UserApi/UserSlice';
+import {kApiUserLogout} from '../config/WebService';
 
 const Stack = createNativeStackNavigator();
 
+const {request, success, failure} = userActions;
 const MainStackNavigator = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   useEffect(() => {
-    setIsUserLoggedIn(user?.data?.id ? true : false);
+    // setIsUserLoggedIn(user?.data?.id ? true : false);
     setIsUserLoggedIn(
       user?.data?.accessToken &&
         typeof user?.data?.accessToken === 'string' &&
@@ -56,7 +59,13 @@ const MainStackNavigator = () => {
                 style={style.MaterialCart}
                 name="logout"
                 onPress={() => {
-                  dispatch(logOut());
+                  dispatch(
+                    request({
+                      url: kApiUserLogout,
+                      header: {access_token: user?.data?.accessToken},
+                      requestType: 'Logout',
+                    }),
+                  );
                 }}
               />
             ),

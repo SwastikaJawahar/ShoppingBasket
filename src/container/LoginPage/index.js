@@ -69,20 +69,20 @@ function LoginPage(props) {
         <TouchableOpacity
           onPress={async () => {
             // PersistanceHelper.setObject('loginDetails', {username, password});
-            dispatch(request({email, password}));
+            dispatch(request({url: kApiUserLogin, data: {email, password}}));
 
-            try {
-              const response = await APIHelper.post(kApiUserLogin, {
-                email,
-                password,
-              });
+            // try {
+            //   const response = await APIHelper.post(kApiUserLogin, {
+            //     email,
+            //     password,
+            //   });
 
-              dispatch(success(response));
-              setEmail('');
-              setPassword('');
-            } catch (error) {
-              dispatch(failure(error));
-            }
+            //   dispatch(success(response));
+            //   setEmail('');
+            //   setPassword('');
+            // } catch (error) {
+            //   dispatch(failure(error));
+            // }
           }}
           /* handleLogin();
             if (route.params && route.params.objUser) {

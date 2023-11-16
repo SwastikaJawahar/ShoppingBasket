@@ -29,22 +29,22 @@ const authSlice = createSlice({
       }
     },
     register: (state, action) => {
-      const loginUser = action.payload;
-      const savedUser = JSON.parse(JSON.stringify(state.user));
-      const userFound = savedUser.findIndex(thisElement => {
-        return (
-          thisElement.username === loginUser.username &&
-          thisElement.password === loginUser.password
-        );
-      });
-      if (userFound !== -1) {
-        state.isAuthenticated = false;
-        state.message = 'User Already Registered';
-      } else {
-        const updatedUsers = [...savedUser, loginUser];
-        state.user = updatedUsers;
-        state.isAuthenticated = false;
-      }
+      // const loginUser = action.payload;
+      // const savedUser = JSON.parse(JSON.stringify(state.user));
+      // const userFound = savedUser.findIndex(thisElement => {
+      //   return (
+      //     thisElement.username === loginUser.username &&
+      //     thisElement.password === loginUser.password
+      //   );
+      // });
+      // if (userFound !== -1) {
+      //   state.isAuthenticated = false;
+      //   state.message = 'User Already Registered';
+      // } else {
+      //   const updatedUsers = [...savedUser, loginUser];
+      //   state.user = updatedUsers;
+      //   state.isAuthenticated = false;
+      // }
     },
     logout: state => {
       state.isAuthenticated = false;
