@@ -1,10 +1,8 @@
 import {take, put, call, fork} from 'redux-saga/effects';
-
 import {userActions} from '../features/UserApi/UserSlice';
 import {APIHelper} from '../helpers';
-import {logout} from '../features/UserApi/UserSlice';
 
-const {request, success, failure} = userActions;
+const {request, success, failure, logout} = userActions;
 
 function callPostRequest(url, data, header) {
   return APIHelper.post(url, data, header);
@@ -22,7 +20,6 @@ function* watchRequest() {
       const {url, data, header, requestType} = payload;
       if (requestType === 'Logout') {
         response = yield call(callDeleteRequest, url, header);
-        console.log(yield put(logout()) + 'yeildput');
         yield put(logout());
       } else {
         response = yield call(callPostRequest, url, data);
@@ -30,8 +27,6 @@ function* watchRequest() {
       }
     } catch (err) {
       yield put(failure(err.message));
-
-      // ErrorHelper.handleErrors(err, true);
     }
   }
 }

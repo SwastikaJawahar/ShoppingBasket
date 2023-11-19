@@ -7,12 +7,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     request: (state, action) => {
-      if (action.payload.requestType === 'Logout') {
-        state.isFetching = false;
-        state.data = {};
-      } else {
-        state.isFetching = true;
-      }
+      state.isFetching = true;
     },
     success: (state, action) => {
       if (action.payload.userId) {
