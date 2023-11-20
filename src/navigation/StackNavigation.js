@@ -52,6 +52,7 @@ const MainStackNavigator = () => {
           name="CounterReduxScreen"
           component={CounterReduxScreen}
         /> */}
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen
           options={{
             headerRight: () => (

@@ -1,17 +1,12 @@
 import {kApiUrlEndpoint, api} from '../config/WebService';
 
 class APIHelper {
-  get = (url, data, headers) => {
+  get = async (url, data, headers) => {
     url = kApiUrlEndpoint + url;
-    console.log(api.get(url));
-    return api
-      .get(url)
-      .then(response => {
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const response = await fetch(url).then(x => x.json());
+    return new Promise((resolve, reject) => {
+      this.handlePromise(resolve, reject, response);
+    });
   };
   post = async (url, data, headers = {}) => {
     url = kApiUrlEndpoint + url;

@@ -19,8 +19,8 @@ function* watchRequest() {
       let response;
       const {url, data, header, requestType} = payload;
       if (requestType === 'Logout') {
-        response = yield call(callDeleteRequest, url, header);
         yield put(logout());
+        response = yield call(callDeleteRequest, url, header);
       } else {
         response = yield call(callPostRequest, url, data);
         yield put(success(response));

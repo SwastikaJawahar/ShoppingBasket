@@ -22,7 +22,8 @@ function HomeScreen(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    APIHelper.get(kApiTodos)
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(x => x.json())
       .then(response => {
         setData(response);
       })
@@ -46,7 +47,6 @@ function HomeScreen(props) {
               <View>
                 <TouchableOpacity style={style.flatList}>
                   <View>
-                    <Text style={style.Text}>{item.userId}</Text>
                     <Text style={style.Text}>{item.title}</Text>
                   </View>
                 </TouchableOpacity>

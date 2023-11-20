@@ -459,6 +459,15 @@ PODS:
   - RNGestureHandler (2.13.4):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
+  - RNImageCropPicker (0.40.2):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.40.2)
+    - TOCropViewController
+  - RNImageCropPicker/QBImagePickerController (0.40.2):
+    - React-Core
+    - React-RCTImage
+    - TOCropViewController
   - RNReanimated (3.5.4):
     - DoubleConversion
     - FBLazyVector
@@ -490,6 +499,7 @@ PODS:
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - SocketRocket (0.6.1)
+  - TOCropViewController (2.6.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -538,6 +548,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -558,6 +569,7 @@ SPEC REPOS:
     - PromisesObjC
     - PromisesSwift
     - SocketRocket
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   boost:
@@ -648,6 +660,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -713,9 +727,11 @@ SPEC CHECKSUMS:
   RNFBApp: b43d4829366a5065e17f9af3b03a0c4890eaeb85
   RNFBCrashlytics: 7456cc01ce08e6043dcfade9dbf5e28671887409
   RNGestureHandler: 6594263b1a123e43c23ff72c8d99080187e74bf9
+  RNImageCropPicker: d9616a0cb9b72e8551ff94a7a5021fbd29050aa5
   RNReanimated: bdadbf5322d7894bb6016985d8ae5c9ed5fc83d0
   RNScreens: 3e56c56bd35436215a56f48a753e30e8ce018a09
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 
 PODFILE CHECKSUM: ce5dc3aad7e2b5dc57e6a36b4f5b84b07b654318

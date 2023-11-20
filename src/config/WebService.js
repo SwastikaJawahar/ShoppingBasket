@@ -7,5 +7,3 @@ export const kApiUserLogout = '/Users/logout';
 export const api = create({
   baseURL: 'http://localhost:3000',
 });
-
-export const kApiTodos = '/todos';
