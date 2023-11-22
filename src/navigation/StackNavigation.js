@@ -9,6 +9,7 @@ import {
   ProfileScreen,
   SignUpPage,
   CartScreen,
+  EditProfileScreen,
 } from '../index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialIconsSimple from 'react-native-vector-icons/SimpleLineIcons';
@@ -52,7 +53,21 @@ const MainStackNavigator = () => {
           name="CounterReduxScreen"
           component={CounterReduxScreen}
         /> */}
-        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen
+          options={{
+            headerRight: () => (
+              <MaterialIconsCom
+                style={style.MaterialCart}
+                name="account-edit"
+                size={25}
+                onPress={() => navigation.navigate('EditProfileScreen')}
+              />
+            ),
+          }}
+          name="ProfileScreen"
+          component={ProfileScreen}
+        />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         <Stack.Screen
           options={{
             headerRight: () => (

@@ -8,6 +8,7 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../HomeScreen';
 import Catagories from '../Catagories';
 import {MainStackNavigator} from '../../navigation/StackNavigation.js';
@@ -114,7 +115,7 @@ function ProfileScreen(props) {
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="settings-outline" color="#FF6347" size={25} />
+            <Icons name="settings-outline" color="#FF6347" size={25} />
             <Text style={styles.menuItemText}>Settings</Text>
           </View>
         </TouchableRipple>

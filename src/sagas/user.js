@@ -7,7 +7,7 @@ const {request, success, failure, logout} = userActions;
 function callPostRequest(url, data, header) {
   return APIHelper.post(url, data, header);
 }
-function callDeleteRequest(url, header) {
+function callLogoutRequest(url, header) {
   return APIHelper.post(url, header);
 }
 
@@ -19,8 +19,8 @@ function* watchRequest() {
       let response;
       const {url, data, header, requestType} = payload;
       if (requestType === 'Logout') {
+        response = yield call(callLogoutRequest, url, header);
         yield put(logout());
-        response = yield call(callDeleteRequest, url, header);
       } else {
         response = yield call(callPostRequest, url, data);
         yield put(success(response));
