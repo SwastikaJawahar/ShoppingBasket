@@ -11,6 +11,7 @@ import ProfileScreen from './container/ProfileScreen';
 import CounterReduxScreen from './container/CounterReduxScreen';
 import CartScreen from './container/CartScreen';
 import EditProfileScreen from './container/EditProfileScreen';
+import MapScreenComponent from './container/MapsScreenComponent';
 export {
   ListItemScreen,
   DetailListItemScreen,
@@ -25,4 +26,5 @@ export {
   CounterReduxScreen,
   CartScreen,
   EditProfileScreen,
+  MapScreenComponent,
 };

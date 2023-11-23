@@ -10,6 +10,7 @@ import {
   SignUpPage,
   CartScreen,
   EditProfileScreen,
+  MapScreenComponent,
 } from '../index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialIconsSimple from 'react-native-vector-icons/SimpleLineIcons';
@@ -49,10 +50,10 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
-        {/* <Stack.Screen
-          name="CounterReduxScreen"
-          component={CounterReduxScreen}
-        /> */}
+        <Stack.Screen
+          name="MapScreenComponent"
+          component={MapScreenComponent}
+        />
         <Stack.Screen
           options={{
             headerRight: () => (
@@ -158,7 +159,7 @@ const MainStackNavigator = () => {
   }
   return (
     <Stack.Navigator>
-      {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
+      {true ? HomeStackScreen() : AuthStackScreen()}
     </Stack.Navigator>
   );
 };
