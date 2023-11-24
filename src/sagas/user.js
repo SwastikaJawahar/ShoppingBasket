@@ -18,12 +18,13 @@ function* watchRequest() {
     try {
       let response;
       const {url, data, header, requestType} = payload;
+
       if (requestType === 'Logout') {
         response = yield call(callLogoutRequest, url, header);
         yield put(logout());
       } else {
         response = yield call(callPostRequest, url, data);
-        yield put(success(response));
+        yield put(success(response.data));
       }
     } catch (err) {
       yield put(failure(err.message));

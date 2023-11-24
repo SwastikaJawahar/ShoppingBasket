@@ -50,7 +50,27 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
-        <Stack.Screen name="MapScreen" component={MapScreen} />
+        <Stack.Screen
+          options={{
+            headerRight: () => (
+              <MaterialIconsSimple
+                style={style.MaterialCart}
+                name="logout"
+                onPress={() => {
+                  dispatch(
+                    request({
+                      url: kApiUserLogout,
+                      header: {access_token: user?.data?.accessToken},
+                      requestType: 'Logout',
+                    }),
+                  );
+                }}
+              />
+            ),
+          }}
+          name="MapScreen"
+          component={MapScreen}
+        />
         <Stack.Screen
           options={{
             headerRight: () => (
@@ -156,7 +176,7 @@ const MainStackNavigator = () => {
   }
   return (
     <Stack.Navigator>
-      {true ? HomeStackScreen() : AuthStackScreen()}
+      {isUserLoggedIn ? HomeStackScreen() : AuthStackScreen()}
     </Stack.Navigator>
   );
 };
