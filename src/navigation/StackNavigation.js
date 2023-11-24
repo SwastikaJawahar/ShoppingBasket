@@ -10,7 +10,7 @@ import {
   SignUpPage,
   CartScreen,
   EditProfileScreen,
-  MapScreenComponent,
+  MapScreen,
 } from '../index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialIconsSimple from 'react-native-vector-icons/SimpleLineIcons';
@@ -50,10 +50,7 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
-        <Stack.Screen
-          name="MapScreenComponent"
-          component={MapScreenComponent}
-        />
+        <Stack.Screen name="MapScreen" component={MapScreen} />
         <Stack.Screen
           options={{
             headerRight: () => (
