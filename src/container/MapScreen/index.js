@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import React, {useState, useRef} from 'react';
 import MapViewComponent from '../../components /MapViewComponent';
 
 const markers = [
@@ -12,15 +12,23 @@ const markers = [
 ];
 
 export default function MapScreen() {
+  const mapControlRef = useRef(null);
   const [myMapMarkers, setMyMapMarkers] = useState(markers);
   return (
     <View style={{flex: 1}}>
       <MapViewComponent
+        ref={mapControlRef}
         markers={markers}
         onLongPress={arg => {
           const {coordinate} = arg.nativeEvent;
 
           setMyMapMarkers([...myMapMarkers, coordinate]);
+        }}
+      />
+      <Button
+        title={'Navigate to some place'}
+        onPress={() => {
+          mapControlRef.current.mytestmethod();
         }}
       />
     </View>

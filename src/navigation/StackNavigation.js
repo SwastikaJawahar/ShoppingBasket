@@ -16,18 +16,21 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialIconsSimple from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIconsCom from 'react-native-vector-icons/MaterialCommunityIcons';
 import {UserContextProvider, useUserContext} from '../contexts/UserContext';
-import styles from '../container/ListItemScreen/styles';
 import {Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../features/cart/cartSlice';
 import {logout} from '../features/UserApi/UserSlice';
-// import {logout} from '../features/Auth/authSlice';
 import {userActions} from '../features/UserApi/UserSlice';
 import {kApiUserLogout} from '../config/WebService';
 import LocationScreen from '../container/LocationScreen';
+import {NotificationHelper} from '../helpers';
 
 const Stack = createNativeStackNavigator();
+
+NotificationHelper.initializeFCM();
+NotificationHelper.checkFCMPermission();
+NotificationHelper.getToken();
 
 const {request, success, failure} = userActions;
 const MainStackNavigator = () => {
@@ -51,7 +54,7 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},
             headerTintColor: '#fff',
@@ -59,7 +62,7 @@ const MainStackNavigator = () => {
           }}
           name="LocationScreen"
           component={LocationScreen}
-        />
+        /> */}
         <Stack.Screen
           options={{
             headerRight: () => (
