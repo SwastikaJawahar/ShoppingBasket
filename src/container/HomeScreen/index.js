@@ -38,7 +38,6 @@ function HomeScreen(props) {
     <View style={style.Container}>
       <View style={style.header}>
         <Text style={style.TextContent}>DashBoard</Text>
-        <Text style={style.TextContent}>{fetchedval}</Text>
         <FlatList
           data={data}
           initialNumToRender={20}
@@ -105,6 +104,17 @@ const style = StyleSheet.create({
     marginTop: 8,
     borderWidth: 2,
   },
+  MapButton: {
+    height: 40,
+    width: 100,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#08d4c4',
+    marginTop: 8,
+    borderWidth: 2,
+  },
   TextContent: {
     color: '#08d4c4',
     backgroundColor: '#fff',
@@ -114,6 +124,11 @@ const style = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 2,
     textAlign: 'center',
+  },
+  MaterialAdd: {
+    fontSize: 50,
+    marginLeft: 45,
+    marginTop: 10,
   },
 });
 export default HomeScreen;

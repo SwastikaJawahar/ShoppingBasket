@@ -3,7 +3,7 @@ import React, {useState, useRef} from 'react';
 import MapViewComponent from '../../components /MapViewComponent';
 
 const markers = [
-  {latitude: '37.794861', longitude: '-122.4106587', title: 'some location 1'},
+  {latitude: '37.794861', longitude: '-122.4106587', title: 123},
   {latitude: '37.7988486', longitude: '-122.4102691', title: 'some location 2'},
   {latitude: '37.8078286', longitude: '-122.4102791', title: 'some location 3'},
   {latitude: '37.7899486', longitude: '-122.4102691', title: 'some location 4'},

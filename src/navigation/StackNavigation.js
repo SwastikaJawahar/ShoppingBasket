@@ -80,6 +80,36 @@ const MainStackNavigator = () => {
                 }}
               />
             ),
+            headerLeft: () => (
+              <MaterialIcons
+                style={style.MaterialMap}
+                name="map"
+                onPress={() => {
+                  navigation.navigate('MapScreen');
+                }}
+              />
+            ),
+          }}
+          name="HomePage"
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerRight: () => (
+              <MaterialIconsSimple
+                style={style.MaterialCart}
+                name="logout"
+                onPress={() => {
+                  dispatch(
+                    request({
+                      url: kApiUserLogout,
+                      header: {access_token: user?.data?.accessToken},
+                      requestType: 'Logout',
+                    }),
+                  );
+                }}
+              />
+            ),
           }}
           name="MapScreen"
           component={MapScreen}
@@ -99,27 +129,7 @@ const MainStackNavigator = () => {
           component={ProfileScreen}
         />
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
-        <Stack.Screen
-          options={{
-            headerRight: () => (
-              <MaterialIconsSimple
-                style={style.MaterialCart}
-                name="logout"
-                onPress={() => {
-                  dispatch(
-                    request({
-                      url: kApiUserLogout,
-                      header: {access_token: user?.data?.accessToken},
-                      requestType: 'Logout',
-                    }),
-                  );
-                }}
-              />
-            ),
-          }}
-          name="HomePage"
-          component={HomeScreen}
-        />
+
         <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},
@@ -204,6 +214,11 @@ const ProfileStack = () => {
 const style = StyleSheet.create({
   MaterialCart: {
     fontSize: 30,
+    color: '#08d4c4',
+  },
+  MaterialMap: {
+    fontSize: 40,
+    color: '#08d4c4',
   },
 });
 export {MainStackNavigator, ProfileStack};

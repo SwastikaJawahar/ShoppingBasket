@@ -1,20 +1,21 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
+import propTypes from 'prop-types';
 
 class DetailListItemScreen extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
   render() {
     const {route} = this.props;
-    console.log({route});
+    const title = route.params.title;
+    const desc = route.params.desc;
     return (
       <View style={styles.container}>
-        <Text style={styles.texttitle}>{route.params.title}</Text>
-        <Text style={styles.textdesc}>{route.params.desc}</Text>
+        <Text style={styles.texttitle}>{title}</Text>
+        <Text style={styles.textdesc}>{desc}</Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('ListItem')}
           style={styles.TouchableOpacity}>
@@ -30,4 +31,8 @@ class DetailListItemScreen extends React.Component {
   }
 }
 
+DetailListItemScreen.propTypes = {
+  title: propTypes.string.isRequired,
+  desc: propTypes.string.isRequired,
+};
 export default DetailListItemScreen;
