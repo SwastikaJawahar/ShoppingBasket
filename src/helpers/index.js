@@ -1,3 +1,5 @@
 import PersistanceHelper from './PersistanceHelper';
 import APIHelper from './APIHelper';
-export {PersistanceHelper, APIHelper};
+import LocationHelper from './LocationHelper';
+
+export {PersistanceHelper, APIHelper, LocationHelper};

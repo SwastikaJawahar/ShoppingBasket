@@ -25,6 +25,7 @@ import {logout} from '../features/UserApi/UserSlice';
 // import {logout} from '../features/Auth/authSlice';
 import {userActions} from '../features/UserApi/UserSlice';
 import {kApiUserLogout} from '../config/WebService';
+import LocationScreen from '../container/LocationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,15 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
+        <Stack.Screen
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'LocationScreen',
+          }}
+          name="LocationScreen"
+          component={LocationScreen}
+        />
         <Stack.Screen
           options={{
             headerRight: () => (
