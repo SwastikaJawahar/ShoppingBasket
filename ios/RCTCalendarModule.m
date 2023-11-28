@@ -15,5 +15,12 @@ RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)name location:(NSString *)loca
 {
   RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
 }
+RCT_EXPORT_METHOD(createCalendarEventCallBack:(NSString *)title location:(NSString *)location callback: (RCTResponseSenderBlock)callback)
+{
+  NSInteger eventId = 1;
+ callback(@[@(eventId)]);
+
+ RCTLogInfo(@"Pretending to create an event %@ at %@", title, location);
+}
 
 @end

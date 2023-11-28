@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReactMethod;
 import java.util.Map;
 import java.util.HashMap;
 import android.util.Log;
+import com.facebook.react.bridge.Callback;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
     CalendarModule(ReactApplicationContext context) {
@@ -22,5 +23,10 @@ public class CalendarModule extends ReactContextBaseJavaModule {
     public void createCalendarEvent(String name, String location) {
         Log.d("CalendarModule", "Create event called with name: " + name
                 + " and location: " + location);
+    }
+    @ReactMethod
+    public void createCalendarEventCallBack(String name, String location, Callback callBack) {
+        Integer eventId = 1;
+        callBack.invoke(eventId);
     }
 }

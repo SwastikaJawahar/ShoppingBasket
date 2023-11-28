@@ -19,6 +19,19 @@ const CalenderModule = props => {
         color="#841584"
         onPress={onPress}
       />
+      <Button
+        title="CallBack"
+        color="#841584"
+        onPress={() => {
+          CalendarModule.createCalendarEventCallBack(
+            'Party',
+            'My House',
+            eventId => {
+              console.log(`Created a new event with id ${eventId}`);
+            },
+          );
+        }}
+      />
     </View>
   );
 };
