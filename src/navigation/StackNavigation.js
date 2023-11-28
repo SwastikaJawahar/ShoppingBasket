@@ -25,6 +25,7 @@ import {userActions} from '../features/UserApi/UserSlice';
 import {kApiUserLogout} from '../config/WebService';
 import LocationScreen from '../container/LocationScreen';
 import {NotificationHelper} from '../helpers';
+import CalenderModule from '../container/CalenderModule';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,15 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
+        <Stack.Screen
+          options={{
+            headerStyle: {backgroundColor: '#009387'},
+            headerTintColor: '#fff',
+            title: 'CalenderModule',
+          }}
+          name="CalenderModule"
+          component={CalenderModule}
+        />
         {/* <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},

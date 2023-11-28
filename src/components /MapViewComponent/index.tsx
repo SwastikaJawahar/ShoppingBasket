@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  ReactNode,
-} from 'react';
+import React, {useState, forwardRef, useImperativeHandle, useRef} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import MapView, {
   PROVIDER_GOOGLE,
