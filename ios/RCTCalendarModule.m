@@ -29,5 +29,16 @@ RCT_EXPORT_METHOD(createCalendarEventCallBack:(NSString *)title
       errorCallback(@[e]);
     }
 }
-
+RCT_EXPORT_METHOD(createCalendarEventPromises:(NSString *)title
+                 location:(NSString *)location
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  NSNumber *eventId = [NSNumber numberWithInt:12];
+ if (eventId) {
+    resolve(@[eventId]);
+  } else {
+    reject(@"event_failure", @"no event id returned", nil);
+  }
+}
 @end

@@ -35,6 +35,21 @@ const CalenderModule = props => {
           );
         }}
       />
+      <Button
+        title="Promises"
+        color="#841584"
+        onPress={async () => {
+          try {
+            const eventId = await CalendarModule.createCalendarEventPromises(
+              'Party',
+              'My House',
+            );
+            console.log(`Created a new event with id ${eventId}`);
+          } catch (e) {
+            console.error(e);
+          }
+        }}
+      />
     </View>
   );
 };
