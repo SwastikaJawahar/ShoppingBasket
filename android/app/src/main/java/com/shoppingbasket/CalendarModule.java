@@ -25,8 +25,9 @@ public class CalendarModule extends ReactContextBaseJavaModule {
                 + " and location: " + location);
     }
     @ReactMethod
-    public void createCalendarEventCallBack(String name, String location, Callback callBack) {
-        Integer eventId = 1;
-        callBack.invoke(eventId);
+    public void createCalendarEventCallBack(String name, String location, Callback myFailureCallback, Callback mySuccessCallback) {
+        Integer eventId = 123;
+        mySuccessCallback.invoke( eventId);
+
     }
 }

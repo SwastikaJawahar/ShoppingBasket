@@ -24,10 +24,13 @@ const CalenderModule = props => {
         color="#841584"
         onPress={() => {
           CalendarModule.createCalendarEventCallBack(
-            'Party',
-            'My House',
+            'testName',
+            'testLocation',
+            error => {
+              console.error(`Error found! ${error}`);
+            },
             eventId => {
-              console.log(`Created a new event with id ${eventId}`);
+              console.log(`event id ${eventId} returned`);
             },
           );
         }}
