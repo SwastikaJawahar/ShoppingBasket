@@ -1,18 +1,18 @@
 package com.shoppingbasket;
 
-import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import java.util.Map;
-import java.util.HashMap;
 import android.util.Log;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
-
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.Arguments;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
+
     CalendarModule(ReactApplicationContext context) {
         super(context);
     }
@@ -20,6 +20,35 @@ public class CalendarModule extends ReactContextBaseJavaModule {
     @Override
     public String getName() {
         return "CalendarModule";
+    }
+
+    private void sendEvent(String eventName, WritableMap params) {
+        getReactApplicationContext()
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, params);
+    }
+
+    private int listenerCount = 0;
+    @ReactMethod
+    public void addListener(String eventName) {
+        if (listenerCount == 0) {
+            // Set up any upstream listeners or background tasks as necessary
+        }
+
+        listenerCount += 1;
+    }
+    @ReactMethod
+    public void removeListeners(Integer count) {
+        listenerCount -= count;
+        if (listenerCount == 0) {
+            // Remove upstream listeners, stop unnecessary background tasks
+        }
+    }
+    @ReactMethod
+    public void createCalendarEventSendingEvent(){
+        WritableMap params = Arguments.createMap();
+        params.putString("BirthdayParty", "Tomorrow");
+        sendEvent("EventReminder", params);
     }
     @ReactMethod
     public void createCalendarEvent(String name, String location) {

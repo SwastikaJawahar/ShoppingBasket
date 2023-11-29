@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
-
-import {NativeModules} from 'react-native';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 const {CalendarModule} = NativeModules;
 
 console.log(CalendarModule);
 
 const CalenderModule = props => {
+  useEffect(() => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
+    let eventListener = eventEmitter.addListener('EventReminder', event => {
+      console.log(event.eventProperty); // "someValue"
+    });
+    CalendarModule.createCalendarEventSendingEvent();
+    // Removes the listener once unmounted
+    return () => {
+      eventListener.remove();
+    };
+  }, []);
+
   const onPress = () => {
     CalendarModule.createCalendarEvent('testName', 'testLocation');
   };

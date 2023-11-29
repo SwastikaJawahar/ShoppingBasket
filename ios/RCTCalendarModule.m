@@ -7,6 +7,9 @@
 // RCTCalendarModule.m
 #import "RCTCalendarModule.h"
 #import <React/RCTLog.h>
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+
 @implementation RCTCalendarModule
 
 // To export a module named RCTCalendarModule
@@ -41,4 +44,7 @@ RCT_EXPORT_METHOD(createCalendarEventPromises:(NSString *)title
     reject(@"event_failure", @"no event id returned", nil);
   }
 }
+@end
+@interface CalendarModule : RCTEventEmitter <RCTBridgeModule>
+
 @end
