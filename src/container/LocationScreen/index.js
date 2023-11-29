@@ -1,6 +1,5 @@
 import {View, Text, Button} from 'react-native';
 import React, {useEffect} from 'react';
-import Geolocation from 'react-native-geolocation-service';
 import {LocationHelper} from '../../helpers';
 import analytics from '@react-native-firebase/analytics';
 
@@ -12,7 +11,7 @@ export default function LocationScreen() {
   const fetchLocation = () => {
     LocationHelper.checkLocationPermission(
       () => {
-        LocationHelper.fetchLocation(
+        LocationHelper.trackUserLocation(
           position => {
             console.log(position);
           },
@@ -21,7 +20,9 @@ export default function LocationScreen() {
           },
         );
       },
-      () => {},
+      error => {
+        console.log(error);
+      },
     );
   };
 

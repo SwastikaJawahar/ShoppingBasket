@@ -55,7 +55,7 @@ const MainStackNavigator = () => {
   function HomeStackScreen() {
     return (
       <Stack.Group>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},
             headerTintColor: '#fff',
@@ -63,8 +63,8 @@ const MainStackNavigator = () => {
           }}
           name="CalenderModule"
           component={CalenderModule}
-        />
-        {/* <Stack.Screen
+        /> */}
+        <Stack.Screen
           options={{
             headerStyle: {backgroundColor: '#009387'},
             headerTintColor: '#fff',
@@ -72,7 +72,7 @@ const MainStackNavigator = () => {
           }}
           name="LocationScreen"
           component={LocationScreen}
-        /> */}
+        />
         <Stack.Screen
           options={{
             headerRight: () => (

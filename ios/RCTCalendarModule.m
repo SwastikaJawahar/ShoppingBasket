@@ -45,6 +45,3 @@ RCT_EXPORT_METHOD(createCalendarEventPromises:(NSString *)title
   }
 }
 @end
-@interface CalendarModule : RCTEventEmitter <RCTBridgeModule>
-
-@end

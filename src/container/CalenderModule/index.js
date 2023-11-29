@@ -6,17 +6,17 @@ const {CalendarModule} = NativeModules;
 console.log(CalendarModule);
 
 const CalenderModule = props => {
-  useEffect(() => {
-    const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
-    let eventListener = eventEmitter.addListener('EventReminder', event => {
-      console.log(event.eventProperty); // "someValue"
-    });
-    CalendarModule.createCalendarEventSendingEvent();
-    // Removes the listener once unmounted
-    return () => {
-      eventListener.remove();
-    };
-  }, []);
+  //   useEffect(() => {
+  //     const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
+  //     let eventListener = eventEmitter.addListener('EventReminder', event => {
+  //       console.log(event.eventProperty); // "someValue"
+  //     });
+  //     CalendarModule.createCalendarEventSendingEvent();
+  //     // Removes the listener once unmounted
+  //     return () => {
+  //       eventListener.remove();
+  //     };
+  //   }, []);
 
   const onPress = () => {
     CalendarModule.createCalendarEvent('testName', 'testLocation');
